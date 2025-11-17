@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UMKM Desa - Rasa Desa</title>
+  <meta name="description" content="Portal promosi UMKM desa: kuliner, keranjang pesanan, pelacakan driver, dan layanan kontak." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="container inner">
+      <a class="brand" href="#" data-goto="home">
+        <span class="logo">RD</span>
+        Rasa Desa
+      </a>
+      <div class="links">
+        <a href="#" data-page="home" data-goto="home">Home</a>
+        <a href="#" data-page="menus" data-goto="menus">UMKM Menus</a>
+        <a href="#" data-page="basket" data-goto="basket">Basket & Driver</a>
+        <a href="#" data-page="contact" data-goto="contact">Contact</a>
+        <span class="tag" id="nav-username">Guest</span>
+        <button class="btn outline" id="logout-btn">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Login Page -->
+  <main id="page-login" class="auth" style="display:none">
+    <div class="panel">
+      <span class="tag">Welcome</span>
+      <h1>Masuk untuk menikmati kuliner UMKM desa</h1>
+      <p class="helper">Gunakan nama dan kata sandi apa saja untuk simulasi.</p>
+      <form id="login-form" class="section">
+        <div class="row">
+          <input class="input" id="login-name" placeholder="Nama" />
+          <input type="password" class="input" id="login-pass" placeholder="Kata sandi" />
+        </div>
+        <button class="btn" style="width:100%;margin-top:1rem">Masuk</button>
+      </form>
+      <div class="card">
+        <div class="title">Kenapa Rasa Desa?</div>
+        <p class="helper">Platform untuk angkat potensi UMKM desa: kuliner lezat, layanan cepat, dan dukungan komunitas.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Home Page: Restaurant themed -->
+  <section id="page-home" class="section" style="display:none">
+    <div class="container">
+      <div class="hero">
+        <div>
+          <span class="tag">Cita rasa kampung halaman</span>
+          <h1>Restoran virtual UMKM desa: hangat, nikmat, bersahabat.</h1>
+          <p>Temukan menu favorit dari pelaku UMKM lokal. Pesan sekarang, dukung ekonomi desa.</p>
+          <div style="display:flex;gap:.75rem;margin-top:1rem">
+            <a class="btn" href="#" data-goto="menus">Jelajah Menu</a>
+            <a class="btn outline" href="#" data-goto="basket">Lihat Keranjang</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop" alt="restaurant" style="border-radius:.75rem">
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="grid cols-3">
+          <div class="card">
+            <div class="title">Bahan Segar</div>
+            <p class="helper">Dari kebun dan pasar desa setiap hari.</p>
+          </div>
+          <div class="card">
+            <div class="title">Harga Bersahabat</div>
+            <p class="helper">Langsung dari pelaku UMKM, tanpa perantara.</p>
+          </div>
+          <div class="card">
+            <div class="title">Pengiriman Cepat</div>
+            <p class="helper">Driver lokal siap antar ke rumah Anda.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menus Page: Horizontal list -->
+  <section id="page-menus" class="section" style="display:none">
+    <div class="container">
+      <h2 class="title">Menu UMKM Populer</h2>
+      <div id="menu-list" class="h-scroll section"></div>
+    </div>
+  </section>
+
+  <!-- Basket + Driver tracking Page -->
+  <section id="page-basket" class="section" style="display:none">
+    <div class="container grid" style="grid-template-columns:1.2fr .8fr;gap:1.5rem">
+      <div class="card">
+        <div class="title" style="display:flex;justify-content:space-between;align-items:center">
+          <span>Keranjang Pesanan</span>
+          <a class="btn ghost" href="#" data-goto="menus">+ Tambah Menu</a>
+        </div>
+        <table class="table" style="margin-top:1rem">
+          <thead>
+            <tr class="tr"><td>Item</td><td>Harga</td><td>Qty</td><td style="text-align:right">Subtotal</td></tr>
+          </thead>
+          <tbody id="cart-body"></tbody>
+        </table>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem">
+          <div class="total" id="cart-total">Rp0</div>
+          <button class="btn" id="start-track">Pesan & Lacak</button>
+        </div>
+      </div>
+      <div class="tracker">
+        <div class="title">Pelacakan Driver</div>
+        <div class="progress"><div class="bar"></div></div>
+        <div class="map">
+          <div class="pin" id="pin" title="Tujuan"></div>
+          <div class="bike" id="bike" title="Driver"></div>
+        </div>
+        <p class="helper">Tekan "Pesan & Lacak" untuk mulai simulasi perjalanan driver.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Page -->
+  <section id="page-contact" class="section" style="display:none">
+    <div class="container">
+      <div class="grid cols-3">
+        <div class="card" style="grid-column: span 2">
+          <div class="title">Layanan Kontak</div>
+          <p class="helper">Ada pertanyaan, saran, atau ingin bermitra? Kirim pesan Anda.</p>
+          <form id="contact-form" class="section">
+            <div class="row cols-2">
+              <input class="input" id="c-name" placeholder="Nama" />
+              <input class="input" id="c-email" placeholder="Email" />
+            </div>
+            <textarea class="input" id="c-msg" rows="5" placeholder="Pesan Anda"></textarea>
+            <button class="btn" style="margin-top:1rem">Kirim</button>
+          </form>
+        </div>
+        <div class="card">
+          <div class="title">Kontak Cepat</div>
+          <p class="helper">WhatsApp: 08xx-xxxx-xxxx<br/>Email: halo@rasadesa.id<br/>Alamat: Balai Desa Sukamaju</p>
+          <div style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap">
+            <a class="btn" href="#" onclick="toast('Membuka WhatsApp...')">WhatsApp</a>
+            <a class="btn outline" href="#" onclick="toast('Membuka Email...')">Email</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
